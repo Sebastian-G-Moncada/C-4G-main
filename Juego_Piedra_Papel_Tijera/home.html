@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piedra Papel y Tijeras</title>
+    <link rel="stylesheet" href="estilos.css"> 
+</head>
+<body>
+    <h1>Piedra Papel y Tijera</h1>
+    <div class="contenedor">
+        <div class="contenido">
+            <div class="contenido-interno">
+                <h2>Juego</h2>
+                <img src="imagenes/reposo.png" alt="jugador" id="imagen" id="animacion1">
+                <class id="enfrentarse">VS</class>
+                <img src="imagenes/reposo.png" alt="bot" id="imagenBot" id="animacion2">
+                <button id="piedra">Piedra</button>
+                <button id="papel">Papel</button>
+                <button id="tijera">Tijera</button>
+                <button id="juego">Jugar</button>
+            </div>
+        </div>
+    </div>
+<script>
+    var jugador1 ;
+    var jugador2 ;
+    
+    var piedra = 0;
+    var papel = 1;
+    var tijera = 2;
+
+    btnPiedra = document.getElementById('piedra');
+    btnPapel = document.getElementById('papel');
+    btnTijera = document.getElementById('tijera');
+    btnJugar = document.getElementById('juego');
+
+    btnPiedra.addEventListener('click', function(){
+        jugador1 = piedra;
+        document.getElementById('imagen').src = "imagenes/piedra.png";
+    });
+
+    btnPapel.addEventListener('click', function(){
+        jugador1 = papel;
+        document.getElementById('imagen').src = "imagenes/papel.png";
+    });
+
+    btnTijera.addEventListener('click', function(){
+        jugador1 = tijera;
+        document.getElementById('imagen').src = "imagenes/tijeras.png";
+    });
+    
+    btnJugar.addEventListener('click',function(){
+        elegirImagenBot();
+
+        setTimeout(function(){
+            ganador();
+        }, 100);
+
+        setTimeout(function(){
+            resetearImagenes();
+        }, 1250);
+    });
+
+
+    
+    //Eligir Imagen y eleccion del bot
+    function elegirImagenBot(){
+        let numero = Math.floor(Math.random() *(3-0+1)+0);
+        if (numero == 0) {
+            jugador2 = piedra;
+            document.getElementById('imagenBot').src = "imagenes/piedra.png";
+            alert("C# eligio piedra");
+        } else if (numero == 1) {
+            jugador2 = papel;
+            document.getElementById('imagenBot').src = "imagenes/papel.png";
+            alert("C# eligio papel");
+        } else if (numero == 2) {
+            jugador2 = tijera;
+            document.getElementById('imagenBot').src = "imagenes/tijeras.png";
+            alert("C# eligio tijeras");
+        }
+    }
+
+    
+    //Eligir ganador
+    function ganador(){
+        if(jugador1 == jugador2){
+            alert("Empate");
+        }else if(jugador1 == 0 && jugador2 == 1){
+            alert("Perdiste");
+        }else if(jugador1 == 0 && jugador2 == 2){
+            alert("Felicidades Ganaste");
+        }else if(jugador1 == 1 && jugador2 == 0){
+            alert("Felicidades Ganaste");
+        }else if(jugador1 == 1 && jugador2 == 2){
+            alert("Perdiste");
+        }else if(jugador1 == 2 && jugador2 == 0){
+            alert("Perdiste");
+        }else if(jugador1 == 2 && jugador2 == 1){
+            alert("Felicidades Ganaste");
+        }
+    }
+
+    function resetearImagenes (){
+        document.getElementById('imagen').src = "imagenes/reposo.png";
+        document.getElementById('imagenBot').src = "imagenes/reposo.png";
+    }
+
+
+</script>
+</body>
+</html>

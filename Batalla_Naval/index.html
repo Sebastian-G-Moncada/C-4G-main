@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batalla Naval</title>
+</head>
+<body>
+    <script src="Juego.js"></script>
+    <script>
+        let nombre;
+        let dimensionTablero;
+        alert("---Batalla Naval---");
+        alert("RECUERDA QUE EL TABLERO TIENE QUE SER DE UNA DIMENSION MAYOR O IGUAL A 5");
+        alert("SIMBOLOGIA \n 0 = Agua(Vacio) \n 1 = Barco  \n 2 = Barco hundido \n 3 = Ya Tiraste en esta Casilla");
+        nombre = prompt("Ingresa tu Nombre de Jugador");
+        alert("Bienvenido(a) a Batalla Naval "+ nombre + " :)");
+        do {
+            dimensionTablero = prompt("¿Que dimension tendra tu tablero?");
+            if (dimensionTablero >= 5) {
+                alert("--Tu tablero se a creado con exito--");
+            } else {
+                alert("--Tu tablero no se puede crear es menor a 4--");
+            }
+        } while(dimensionTablero < 5);
+        
+
+        //instancia para traer las clases 
+        let juego = new Juego(dimensionTablero,nombre);
+        //let juego = new Juego(dimensionTablero,nombre);
+        juego.ingresarBarco();
+        juego.ingresarBarcoBot();
+        juego.disparar();
+
+
+    </script>
+</body>
+</html>
